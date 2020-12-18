@@ -8,8 +8,12 @@ PW = 3
 function main()
     println("Day 2")
     entries = parse_input("2/input.txt")
+
     println("Part 1")
     println("Answer: $(part1(entries))")
+
+    println("\nPart 2")
+    println("Answer: $(part2(entries))")
 end
 
 
@@ -34,6 +38,11 @@ function part1(inputs)
 end
 
 
+function part2(inputs)
+    sum(toboggan_entry_is_valid.(inputs))
+end
+
+
 struct Policy
     letter::Char
     lower::Int
@@ -50,6 +59,13 @@ end
 function entry_is_valid(entry::Entry)
     n = count(i -> i == entry.policy.letter, entry.pw)
     entry.policy.lower <= n <= entry.policy.upper
+end
+
+
+function toboggan_entry_is_valid(entry::Entry)
+    pw = entry.pw
+    letter = entry.policy.letter
+    xor(pw[entry.policy.lower] == letter, pw[entry.policy.upper] == letter)
 end
 
 
