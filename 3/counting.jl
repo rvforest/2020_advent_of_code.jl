@@ -17,7 +17,6 @@ function count_trees(m::Map, s::Slope)
             break
         end
 
-        println("$coord : $(m[coord])")
         if is_tree(m, coord)
             tree_count += 1
         end
