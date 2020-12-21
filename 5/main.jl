@@ -20,7 +20,14 @@ end
 function main()
     locs = readlines("5/input.txt")
     ids = seat_id.(locs)
-    println("Max: $(maximum(ids))")
+    max_id = maximum(ids)
+    min_id = minimum(ids)
+    println("Max: $max_id")
+
+    seats = Set(min_id:max_id)
+    taken = Set(ids)
+    my_seat = setdiff(seats, taken)
+    println("My seat: $my_seat")
 end
 
 test()
